@@ -1,26 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class People extends Component {
-  render() {
-const { people } = this.props;
-const peopleList = people.map(person =>{
+const People = ({people}) => {
 
-  return (
-    <div className='person' key={person.id}>
+  const peopleList = people.map(person => {
+    if(person.age > 20){
+    return (
+      <div className="person" key={person.id}>
+        {/* takes dynamic values */}
+        <div>Name: {person.name}</div>
+        <div>Age: {person.age}</div>
+        <div>FavColor: {person.favColor}</div>
+        <br />
+      </div>
+    );
+    } else {
+      return null;
+    } 
+  });
 
-    {/* takes dynamic values */}
-      <div>Name: { person.name }</div>
-      <div>Age: { person.age }</div>
-      <div>FavColor: { person.favColor }</div>
-      <br />
-    </div>
-  )
+  return <div className="person-list">{peopleList}</div>;
 
-})
-return (
-    <div className="person-list">
-      {peopleList}
-    </div>
-)
 }
-}
+export default People
